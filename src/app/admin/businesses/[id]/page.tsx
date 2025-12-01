@@ -372,8 +372,7 @@ export default function BusinessDetailsPage() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '20px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{ marginBottom: '30px' }}>
             <button
               onClick={() => router.push('/admin/businesses')}
@@ -1072,7 +1071,6 @@ export default function BusinessDetailsPage() {
               <p>Entreprise non trouvée</p>
             </div>
           )}
-        </div>
     </div>
   );
 }

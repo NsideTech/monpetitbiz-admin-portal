@@ -3,7 +3,7 @@ export interface User {
   username: string;
   fullName?: string;
   password: string; // hashed
-  role: 'admin' | 'owner' | 'seller' | 'manager';
+  role: 'admin' | 'manager';
   businessId?: string;
   createdAt: string;
   updatedAt: string;
@@ -13,7 +13,7 @@ export interface CreateUserInput {
   username: string;
   fullName?: string;
   password: string; // plain text, will be hashed
-  role: 'admin' | 'owner' | 'seller' | 'manager';
+  role: 'admin' | 'manager';
   businessId?: string;
 }
 
@@ -21,7 +21,7 @@ export interface UpdateUserInput {
   username?: string;
   fullName?: string;
   password?: string; // plain text, will be hashed if provided
-  role?: 'admin' | 'owner' | 'seller' | 'manager';
+  role?: 'admin' | 'manager';
   businessId?: string;
 }
 

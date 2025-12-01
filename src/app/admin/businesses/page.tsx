@@ -105,8 +105,7 @@ export default function BusinessesPage() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '20px' }}>
-        <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -341,7 +340,6 @@ export default function BusinessesPage() {
             </>
           )}
         </div>
-      </div>
   );
 }
 

@@ -7,6 +7,7 @@ import { Pagination } from '@/components/admin/Pagination';
 interface User {
   id: string;
   username: string;
+  fullName?: string;
   role: string;
   businessId?: string;
   createdAt: string;
@@ -27,9 +28,10 @@ export default function UsersPage() {
     totalPages: 0,
   });
   const [formData, setFormData] = useState({
+    fullName: '',
     username: '',
     password: '',
-    role: 'owner' as 'admin' | 'owner' | 'seller' | 'manager',
+    role: 'admin' as 'admin' | 'manager',
     businessId: '',
   });
 
@@ -82,12 +84,12 @@ export default function UsersPage() {
       if (editingUser) {
         // Update user
         const updateData: any = {
+          fullName: formData.fullName,
+          username: formData.username,
+          password: formData.password,
           role: formData.role,
+          businessId: formData.businessId || null,
         };
-        if (formData.username) updateData.username = formData.username;
-        if (formData.password) updateData.password = formData.password;
-        if (formData.businessId !== undefined) updateData.businessId = formData.businessId || null;
-
         await axios.put(`/api/users/${editingUser.id}`, updateData);
       } else {
         // Create user
@@ -96,7 +98,7 @@ export default function UsersPage() {
 
       setShowForm(false);
       setEditingUser(null);
-      setFormData({ username: '', password: '', role: 'owner', businessId: '' });
+      setFormData({ fullName: '', username: '', password: '', role: 'admin', businessId: '' });
       loadUsers();
     } catch (err: any) {
       setError(err.response?.data?.message || 'Erreur lors de la sauvegarde');
@@ -106,9 +108,10 @@ export default function UsersPage() {
   const handleEdit = (user: User) => {
     setEditingUser(user);
     setFormData({
+      fullName: user.fullName || '',
       username: user.username,
       password: '',
-      role: user.role as 'admin' | 'owner' | 'seller' | 'manager',
+      role: user.role as 'admin' | 'manager',
       businessId: user.businessId || '',
     });
     setShowForm(true);
@@ -130,12 +133,11 @@ export default function UsersPage() {
   const handleCancel = () => {
     setShowForm(false);
     setEditingUser(null);
-    setFormData({ username: '', password: '', role: 'owner', businessId: '' });
+    setFormData({ fullName: '', username: '', password: '', role: 'admin', businessId: '' });
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '20px' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
           <div style={{
             display: 'flex',
             justifyContent: 'space-between',
@@ -160,7 +162,7 @@ export default function UsersPage() {
             <button
               onClick={() => {
                 setEditingUser(null);
-                setFormData({ username: '', password: '', role: 'owner', businessId: '' });
+                setFormData({ fullName: '', username: '', password: '', role: 'admin', businessId: '' });
                 setShowForm(true);
               }}
               style={{
@@ -256,6 +258,25 @@ export default function UsersPage() {
                 {editingUser ? 'Modifier l\'utilisateur' : 'Nouvel utilisateur'}
               </h2>
               <form onSubmit={handleSubmit}>
+              <div style={{ marginBottom: '20px' }}>
+                  <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
+                    Nom complet
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.fullName}
+                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    required={!editingUser}
+                    // disabled={!!editingUser}
+                    style={{
+                      width: '100%',
+                      padding: '12px',
+                      border: '1px solid #ddd',
+                      borderRadius: '4px',
+                      fontSize: '16px',
+                    }}
+                  />
+                </div>
                 <div style={{ marginBottom: '20px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
                     Nom d'utilisateur
@@ -310,9 +331,7 @@ export default function UsersPage() {
                     }}
                   >
                     <option value="admin">Admin</option>
-                    <option value="owner">Owner</option>
                     <option value="manager">Manager</option>
-                    <option value="seller">Seller</option>
                   </select>
                 </div>
                 <div style={{ marginBottom: '20px' }}>
@@ -465,7 +484,6 @@ export default function UsersPage() {
             />
           )}
         </div>
-    </div>
   );
 }
 

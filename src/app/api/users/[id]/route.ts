@@ -84,7 +84,7 @@ export async function PUT(
     if (session.role === 'admin') {
       if (username !== undefined) updateData.username = username;
       if (role !== undefined) {
-        const validRoles = ['admin', 'owner', 'seller', 'manager'];
+        const validRoles = ['admin', 'manager'];
         if (!validRoles.includes(role)) {
           return NextResponse.json(
             { success: false, message: 'Invalid role' },

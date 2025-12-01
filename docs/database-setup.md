@@ -114,7 +114,7 @@ La table `users` contient les champs suivants :
 - `id` : UUID (string)
 - `username` : String unique
 - `password` : Hash bcrypt du mot de passe
-- `role` : 'admin' | 'owner' | 'seller' | 'manager'
+- `role` : 'admin' | 'manager'
 - `businessId` : String optionnel
 - `createdAt` : Timestamp ISO
 - `updatedAt` : Timestamp ISO

@@ -68,43 +68,12 @@ export default function AdminDashboardPage() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f5f5f5', padding: '20px' }}>
-      <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+    <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
         <div style={{ marginBottom: '30px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <h1 style={{ margin: 0, marginBottom: '8px' }}>Dashboard Admin</h1>
               <p style={{ margin: 0, color: '#666' }}>Vue d'ensemble du système MonPetitBiz</p>
-            </div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <a
-                href="/admin/businesses"
-                style={{
-                  padding: '8px 16px',
-                  background: '#2c5aa0',
-                  color: 'white',
-                  textDecoration: 'none',
-                  borderRadius: '4px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                }}
-              >
-                Gestion entreprises
-              </a>
-              <a
-                href="/admin/users"
-                style={{
-                  padding: '8px 16px',
-                  background: '#2c5aa0',
-                  color: 'white',
-                  textDecoration: 'none',
-                  borderRadius: '4px',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                }}
-              >
-                Gestion utilisateurs
-              </a>
             </div>
           </div>
         </div>
@@ -197,7 +166,6 @@ export default function AdminDashboardPage() {
             </div>
           </>
         )}
-      </div>
     </div>
   );
 }
