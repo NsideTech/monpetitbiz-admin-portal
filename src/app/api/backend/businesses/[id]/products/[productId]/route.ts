@@ -6,11 +6,11 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:9000';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string; productId: string } }
+  { params }: { params: Promise<{ id: string; productId: string }> }
 ) {
   try {
     await requireAuth();
-    const { id: businessId, productId } = params;
+    const { id: businessId, productId  } = await params;
     const body = await request.json();
     const token = getBackendServiceToken();
 
@@ -60,11 +60,11 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string; productId: string } }
+  { params }: { params: Promise<{ id: string; productId: string }> }
 ) {
   try {
     await requireAuth();
-    const { id: businessId, productId } = params;
+    const { id: businessId, productId  } = await params;
     const token = getBackendServiceToken();
 
     const response = await fetch(

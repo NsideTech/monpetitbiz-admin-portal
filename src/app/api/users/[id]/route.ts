@@ -5,11 +5,11 @@ import { validateCsrfToken } from '@/lib/csrf';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const session = await requireAuth();
-    const { id } = params;
+    const { id  } = await params;
 
     // Users can view their own profile, admins can view any
     if (session.userId !== id && session.role !== 'admin') {
@@ -53,7 +53,7 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Validate CSRF token
@@ -65,7 +65,7 @@ export async function PUT(
     }
 
     const session = await requireAuth();
-    const { id } = params;
+    const { id  } = await params;
 
     // Users can update their own profile (limited fields), admins can update any
     if (session.userId !== id && session.role !== 'admin') {
@@ -142,7 +142,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     // Validate CSRF token
@@ -155,7 +155,7 @@ export async function DELETE(
 
     await requireAdmin();
 
-    const { id } = params;
+    const { id  } = await params;
     const db = getDatabase();
 
     await db.deleteUser(id);
