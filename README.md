@@ -4,12 +4,19 @@ Admin dashboard web application for MonPetitBiz business management. This is a s
 
 ## Features
 
-- User authentication via OTP (One-Time Password)
-- Business registration and onboarding
-- Dashboard with business metrics and statistics
-- Transaction history and management
-- Stock level monitoring and alerts
-- Responsive design for mobile and desktop
+- **User authentication** via OTP (One-Time Password)
+- **Business registration and onboarding**
+- **Admin dashboard** with business metrics and statistics
+- **Transaction history** and management
+- **Stock level monitoring** and alerts
+- **Admin product management** for each business:
+  - List products with code, quantity and unit price
+  - Create, edit (name, quantity, price) and delete products
+  - Import products from CSV per business (`nom,quantité,prix`)
+- **Left sidebar layout** with:
+  - Navigation (Dashboard, Businesses, Users)
+  - Connected user profile (avatar with initials, role, logout)
+- **Responsive design** for mobile and desktop
 
 ## Prerequisites
 
@@ -113,6 +120,13 @@ The admin portal communicates with the MonPetitBiz API using:
   - `GET /dashboard/:businessId/metrics` - Get metrics for a period
   - `GET /dashboard/:businessId/export` - Export transaction data
 
+- **Admin product endpoints** (via backend, documented in `docs/backend-integration.md`):
+  - `GET /admin/businesses/:id/products` - List products for a business
+  - `POST /admin/businesses/:id/products` - Create a product
+  - `PATCH /admin/businesses/:id/products/:productId` - Update product (name, quantity, price)
+  - `DELETE /admin/businesses/:id/products/:productId` - Delete product
+  - `POST /admin/businesses/:id/products/bulk-create` - Bulk create products from CSV
+
 All dashboard endpoints require JWT authentication via Bearer token in the Authorization header.
 
 ## Project Structure
@@ -120,14 +134,26 @@ All dashboard endpoints require JWT authentication via Bearer token in the Autho
 ```
 monpetitbiz-admin-portal/
 ├── src/
-│   ├── app/              # Next.js app router pages
-│   │   ├── login/        # Login page
-│   │   ├── dashboard/    # Dashboard pages
-│   │   └── layout.tsx    # Root layout
-│   └── lib/              # Utilities and services
-│       ├── api.ts        # API client
-│       └── auth.ts       # Authentication service
-├── public/               # Static assets
+│   ├── app/                    # Next.js app router pages
+│   │   ├── login/              # Login page
+│   │   ├── admin/              # Admin area (guarded)
+│   │   │   ├── dashboard/      # Admin dashboard
+│   │   │   ├── businesses/     # Admin businesses list & details
+│   │   │   ├── users/          # Admin users management
+│   │   │   └── layout.tsx      # Admin layout (sidebar + header)
+│   │   └── layout.tsx          # Root layout
+│   ├── components/
+│   │   ├── admin/
+│   │   │   ├── AdminSidebar.tsx    # Left navigation + user profile
+│   │   │   ├── AdminHeader.tsx     # Top header bar
+│   │   │   ├── BusinessTable.tsx   # Business listing table
+│   │   │   └── Pagination.tsx      # Reusable pagination
+│   └── lib/                    # Utilities and services
+│       ├── api.ts              # API client
+│       ├── auth.ts             # Authentication service
+│       ├── auth-helpers.ts     # Server-side auth helpers
+│       └── monpetitbiz-db.ts   # Admin portal backend proxy client
+├── public/                     # Static assets
 ├── package.json
 ├── tsconfig.json
 └── next.config.js

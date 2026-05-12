@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Footer } from '@/components/Footer';
+import { runStartupValidation } from '@/lib/startup-validation';
+
+// Validate environment variables at startup
+runStartupValidation();
 
 export const metadata: Metadata = {
   title: 'MonPetitBiz Admin Portal',

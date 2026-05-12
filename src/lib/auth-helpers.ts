@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers';
+import jwt from 'jsonwebtoken';
 import { getDatabase } from './db';
 
 export interface SessionUser {
@@ -18,17 +19,40 @@ export async function getSession(): Promise<SessionUser | null> {
       return null;
     }
 
-    const sessionData = JSON.parse(
-      Buffer.from(sessionToken, 'base64').toString()
-    ) as SessionUser;
-
-    // Check if session is expired
-    if (sessionData.expiresAt < Date.now()) {
+    if (!process.env.JWT_SECRET) {
+      console.error('JWT_SECRET is not configured');
       return null;
     }
 
-    return sessionData;
+    // Verify and decode the JWT token
+    const decoded = jwt.verify(
+      sessionToken,
+      process.env.JWT_SECRET
+    ) as {
+      userId: string;
+      username: string;
+      role: string;
+      businessId?: string;
+      iat: number;
+      exp: number;
+    };
+
+    return {
+      userId: decoded.userId,
+      username: decoded.username,
+      role: decoded.role,
+      businessId: decoded.businessId,
+      expiresAt: decoded.exp * 1000, // Convert to milliseconds
+    };
   } catch (error) {
+    // JWT verification failed (invalid signature, expired, malformed)
+    if (error instanceof jwt.JsonWebTokenError) {
+      console.warn('Invalid JWT token:', error.message);
+    } else if (error instanceof jwt.TokenExpiredError) {
+      console.warn('Expired JWT token');
+    } else {
+      console.error('Session validation error:', error);
+    }
     return null;
   }
 }

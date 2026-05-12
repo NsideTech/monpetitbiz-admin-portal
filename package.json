@@ -9,9 +9,14 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "seed:admin": "tsx scripts/seed-admin.ts"
+    "seed:admin": "tsx scripts/seed-admin.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:security": "jest __tests__/security"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "@supabase/supabase-js": "^2.86.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/better-sqlite3": "^7.6.13",
@@ -19,17 +24,25 @@
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.5.0",
     "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.3",
     "next": "^14.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/jest": "^30.0.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.10.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "eslint": "^8.54.0",
     "eslint-config-next": "^14.0.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
+    "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
     "typescript": "^5.3.0"
   }
