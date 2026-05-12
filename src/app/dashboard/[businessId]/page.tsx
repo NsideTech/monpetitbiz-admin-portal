@@ -156,7 +156,7 @@ export default function DashboardPage() {
             borderRadius: '8px',
             boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
           }}>
-            <h3 style={{ marginBottom: '10px', color: '#666' }}>Aujourd'hui</h3>
+            <h3 style={{ marginBottom: '10px', color: '#666' }}>Aujourd&apos;hui</h3>
             <p style={{ fontSize: '24px', fontWeight: 'bold', color: '#2c5aa0' }}>
               {data.summary.dailyTotal.toLocaleString()} FCFA
             </p>

@@ -279,7 +279,7 @@ export default function UsersPage() {
                 </div>
                 <div style={{ marginBottom: '20px' }}>
                   <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>
-                    Nom d'utilisateur
+                    Nom d&apos;utilisateur
                   </label>
                   <input
                     type="text"
@@ -401,7 +401,7 @@ export default function UsersPage() {
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                   <tr style={{ background: '#f8f9fa', borderBottom: '2px solid #dee2e6' }}>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Nom d'utilisateur</th>
+                    <th style={{ padding: '12px', textAlign: 'left' }}>Nom d&apos;utilisateur</th>
                     <th style={{ padding: '12px', textAlign: 'left' }}>Rôle</th>
                     <th style={{ padding: '12px', textAlign: 'left' }}>Business ID</th>
                     <th style={{ padding: '12px', textAlign: 'left' }}>Créé le</th>

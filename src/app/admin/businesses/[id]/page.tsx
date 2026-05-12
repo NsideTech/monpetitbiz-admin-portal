@@ -389,7 +389,7 @@ export default function BusinessDetailsPage() {
             >
               ← Retour à la liste
             </button>
-            <h1 style={{ margin: 0 }}>Détails de l'entreprise</h1>
+            <h1 style={{ margin: 0 }}>Détails de l&apos;entreprise</h1>
           </div>
 
           {error && (
@@ -429,7 +429,7 @@ export default function BusinessDetailsPage() {
                 borderRadius: '8px',
                 boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
               }}>
-                <h2 style={{ marginTop: 0, marginBottom: '20px' }}>Informations de l'entreprise</h2>
+                <h2 style={{ marginTop: 0, marginBottom: '20px' }}>Informations de l&apos;entreprise</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', marginBottom: '4px', color: '#666', fontSize: '14px' }}>
@@ -691,7 +691,7 @@ export default function BusinessDetailsPage() {
                       padding: '16px',
                       marginBottom: '20px',
                     }}>
-                      <h3 style={{ marginTop: 0, marginBottom: '12px', fontSize: '16px' }}>Résultat de l'import</h3>
+                      <h3 style={{ marginTop: 0, marginBottom: '12px', fontSize: '16px' }}>Résultat de l&apos;import</h3>
                       <div style={{ display: 'flex', gap: '20px', marginBottom: '12px', flexWrap: 'wrap' }}>
                         <div>
                           <span style={{ color: '#666', fontSize: '14px' }}>Créés: </span>
@@ -713,9 +713,8 @@ export default function BusinessDetailsPage() {
                           marginTop: '12px' 
                         }}>
                           <p style={{ margin: 0, fontSize: '14px', color: '#856404' }}>
-                            <strong>Information:</strong> Tous les produits du fichier existent déjà dans la base de données. 
-                            Les produits existants ne sont pas modifiés lors de l'import CSV. 
-                            Pour mettre à jour des produits existants, utilisez la fonction "Modifier" dans la liste des produits.
+                            <strong>Information:</strong>{' '}
+                            {`Tous les produits du fichier existent déjà dans la base de données. Les produits existants ne sont pas modifiés lors de l'import CSV. Pour mettre à jour des produits existants, utilisez la fonction "Modifier" dans la liste des produits.`}
                           </p>
                         </div>
                       )}
@@ -791,7 +790,7 @@ export default function BusinessDetailsPage() {
                     <div style={{ textAlign: 'center', padding: '40px', color: '#666' }}>
                       <p style={{ marginBottom: '12px' }}>Aucun produit trouvé</p>
                       <p style={{ fontSize: '14px', color: '#999' }}>
-                        Utilisez le bouton "Ajouter un produit" ou importez un fichier CSV pour créer des produits.
+                        {`Utilisez le bouton "Ajouter un produit" ou importez un fichier CSV pour créer des produits.`}
                       </p>
                     </div>
                   ) : (
@@ -1060,7 +1059,7 @@ export default function BusinessDetailsPage() {
                         opacity: actionLoading ? 0.6 : 1,
                       }}
                     >
-                      Supprimer l'entreprise
+                      Supprimer l&apos;entreprise
                     </button>
                   </div>
                 </div>

@@ -73,7 +73,7 @@ export default function AdminDashboardPage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <div>
               <h1 style={{ margin: 0, marginBottom: '8px' }}>Dashboard Admin</h1>
-              <p style={{ margin: 0, color: '#666' }}>Vue d'ensemble du système MonPetitBiz</p>
+              <p style={{ margin: 0, color: '#666' }}>Vue d&apos;ensemble du système MonPetitBiz</p>
             </div>
           </div>
         </div>

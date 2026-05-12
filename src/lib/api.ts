@@ -66,9 +66,18 @@ class ApiClient {
       withCredentials: true, // Include cookies in requests
     });
 
-    // Add request interceptor to include auth token (for external API calls)
+    // Add request interceptor for CSRF token and auth
     this.client.interceptors.request.use(
       (config) => {
+        // Add CSRF token for mutations
+        if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(config.method?.toUpperCase() || '')) {
+          const csrfToken = Cookies.get('csrf_token');
+          if (csrfToken) {
+            config.headers['X-CSRF-Token'] = csrfToken;
+          }
+        }
+
+        // Add auth token for external API calls
         const token = this.getToken();
         if (token && config.url?.startsWith(API_URL)) {
           config.headers.Authorization = `Bearer ${token}`;

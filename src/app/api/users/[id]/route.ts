@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db';
 import { requireAdmin, requireAuth } from '@/lib/auth-helpers';
+import { validateCsrfToken } from '@/lib/csrf';
 
 export async function GET(
   request: NextRequest,
@@ -55,6 +56,14 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Validate CSRF token
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid CSRF token' },
+        { status: 403 }
+      );
+    }
+
     const session = await requireAuth();
     const { id } = params;
 
@@ -136,6 +145,14 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
+    // Validate CSRF token
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid CSRF token' },
+        { status: 403 }
+      );
+    }
+
     await requireAdmin();
 
     const { id } = params;

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getDatabase } from '@/lib/db';
 import { requireAdmin } from '@/lib/auth-helpers';
+import { validateCsrfToken } from '@/lib/csrf';
 
 export async function GET(request: NextRequest) {
   try {
@@ -45,6 +46,14 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    // Validate CSRF token
+    if (!await validateCsrfToken(request)) {
+      return NextResponse.json(
+        { success: false, message: 'Invalid CSRF token' },
+        { status: 403 }
+      );
+    }
+
     await requireAdmin();
 
     const body = await request.json();
