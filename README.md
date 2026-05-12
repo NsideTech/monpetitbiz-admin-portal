@@ -161,20 +161,56 @@ monpetitbiz-admin-portal/
 
 ## Deployment
 
-### Vercel (Recommended)
+### Vercel (Recommended) ⚡
 
-1. Connect your repository to Vercel
-2. Set environment variables in Vercel dashboard:
-   - `NEXT_PUBLIC_API_URL` - Your API backend URL
-3. Deploy
+Le projet est optimisé pour Vercel avec Next.js 16 et Neon PostgreSQL.
 
-### Other Platforms
+**Guide complet**: Consultez [`docs/vercel-deployment.md`](./docs/vercel-deployment.md)
 
-The application can be deployed to any platform that supports Next.js:
+**Déploiement rapide**:
+
+1. **Installer Vercel CLI** (optionnel):
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Variables d'environnement à configurer**:
+   - `NEXT_PUBLIC_API_URL` - URL de votre backend API (ex: https://api.monpetitbiz.com)
+   - `BACKEND_SERVICE_TOKEN` - Token de service backend
+   - `JWT_SECRET` - Secret pour tokens JWT (générer avec `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`)
+   - `DATABASE_TYPE` - `neon` (recommandé)
+   - `DATABASE_URL` - Connection string Neon PostgreSQL
+
+3. **Déployer**:
+   ```bash
+   # Via Dashboard Vercel (recommandé)
+   # 1. Allez sur vercel.com/new
+   # 2. Importez le repository
+   # 3. Configurez les variables d'environnement
+   # 4. Deploy!
+   
+   # Ou via CLI
+   vercel --prod
+   ```
+
+**Configuration**:
+- ✅ `vercel.json` déjà configuré
+- ✅ Sécurité headers activés
+- ✅ Fonctions serverless optimisées (1024 MB, 10s timeout)
+- ✅ Region: us-east-1 (proche de Neon)
+
+### Autres plateformes
+
+L'application peut être déployée sur toute plateforme supportant Next.js 16:
 - Netlify
 - AWS Amplify
 - Railway
-- Self-hosted with Node.js
+- Self-hosted avec Node.js
+
+Assurez-vous de:
+1. Configurer les mêmes variables d'environnement
+2. Utiliser Node.js 18+ et npm
+3. Configurer Neon PostgreSQL comme base de données
 
 ## Backend Configuration
 

@@ -13,7 +13,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "test:security": "jest __tests__/security"
+    "test:security": "jest __tests__/security",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel",
+    "vercel:env": "vercel env pull .env.vercel"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2",

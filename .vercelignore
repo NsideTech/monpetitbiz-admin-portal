@@ -1,0 +1,51 @@
+# Dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Testing
+coverage
+.nyc_output
+
+# Local env files
+.env
+.env*.local
+.env.development
+.env.test
+
+# Development database
+data/
+*.db
+*.db-journal
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts (handled by Vercel)
+.next/
+out/
+
+# Documentation (optional, comment out if you want to include)
+# docs/
+
+# Logs
+logs/
+*.log
+
+# Test files
+__tests__/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+jest.config.js
+jest.setup.js
