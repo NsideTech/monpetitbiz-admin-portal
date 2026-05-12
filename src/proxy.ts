@@ -8,10 +8,10 @@ function randomHex(bytes: number): string {
 }
 
 /**
- * Middleware Next.js pour la protection CSRF
+ * Proxy Next.js pour la protection CSRF
  * Génère un token CSRF pour chaque session et le stocke dans un cookie
  */
-export function middleware(request: NextRequest) {
+export default function proxy(request: NextRequest) {
   const response = NextResponse.next();
 
   // Générer un token CSRF s'il n'existe pas

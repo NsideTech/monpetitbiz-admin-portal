@@ -6,13 +6,13 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:9000';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { businessId: string } }
+  { params }: { params: Promise<{ businessId: string }> }
 ) {
   try {
     // Vérifier que l'utilisateur est authentifié (admin du portail)
     await requireAuth();
 
-    const { businessId } = params;
+    const { businessId  } = await params;
     const token = getBackendServiceToken();
 
     // Faire la requête vers le backend

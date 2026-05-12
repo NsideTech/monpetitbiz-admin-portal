@@ -6,11 +6,11 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:9000';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAuth();
-    const { id: businessId } = params;
+    const { id: businessId  } = await params;
     const token = getBackendServiceToken();
 
     const url = `${BACKEND_URL}/admin/businesses/${businessId}/products`;
@@ -65,11 +65,11 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAuth();
-    const { id: businessId } = params;
+    const { id: businessId  } = await params;
     const body = await request.json();
     const token = getBackendServiceToken();
 

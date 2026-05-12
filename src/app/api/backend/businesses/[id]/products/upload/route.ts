@@ -75,11 +75,11 @@ function parseCSV(csvText: string): ProductInput[] {
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAuth();
-    const { id: businessId } = params;
+    const { id: businessId  } = await params;
 
     // Get the CSV file from FormData
     const formData = await request.formData();

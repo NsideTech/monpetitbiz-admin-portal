@@ -6,11 +6,11 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:9000';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await requireAuth();
-    const { id } = params;
+    const { id } = await params;
     const body = await request.json();
     const token = getBackendServiceToken();
 
